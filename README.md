@@ -5,7 +5,11 @@
 [![Coverage Status](https://coveralls.io/repos/github/codecentric/springboot-sample-app/badge.svg?branch=master)](https://coveralls.io/github/codecentric/springboot-sample-app?branch=master)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-Minimal [Spring Boot](http://projects.spring.io/spring-boot/) sample app.
+La Base de datos conectada esta publicada en un RDS, esta estara activa, para sus respectiovas pruebas.
+
+Solo hay que correr el proyecto, recomendaciones:
+  -  Version de java requerida   <java.version>17</java.version>
+
 
 ## Requirements
 
