@@ -5,6 +5,7 @@ import com.fibonacci.controller.dto.FibonacciDTO;
 import com.fibonacci.controller.dto.request.FibonacciRequestDTO;
 import com.fibonacci.domain.entity.Fibonacci;
 import com.fibonacci.domain.repository.FibonacciRepository;
+import com.fibonacci.domain.service.EmailService;
 import com.fibonacci.domain.service.FibonacciService;
 import com.fibonacci.util.Constants;
 import com.fibonacci.controller.dto.response.ResponseDTO;
@@ -29,8 +30,12 @@ public class FibonacciServiceImpl implements FibonacciService {
     @Autowired
     private FibonacciRepository fibonacciRepository;
 
+    @Autowired
+    private EmailService emailService;
 
     private StatusDTO statusDTO;
+
+    private String email = "didier.correa@proteccion.com.co";
 
     /*
     * Calcula la serie de Fibonacci usando las semillas dadas y el número de elementos de acuerdo a la hora ctual
@@ -47,6 +52,9 @@ public class FibonacciServiceImpl implements FibonacciService {
 
             Integer minute = now.getMinute();
             String strMinute = minute.toString();
+            if(minute < 10){
+                strMinute = "0"+strMinute;
+            }
 
 
             Integer param1 = Integer.valueOf(strMinute.substring(0,1));
@@ -67,10 +75,16 @@ public class FibonacciServiceImpl implements FibonacciService {
             /*
             * Se almacenan los datos
             * */
-//            Fibonacci fibonacci = fibonacciRepository.save(
-//                    Fibonacci.builder().fibonacci(series.toString()).id(1).build()
-//            );
+            Fibonacci fibonacci = fibonacciRepository.save(
+                    Fibonacci.builder().fibonacci(series.toString()).id(1).build()
+            );
             fibonacciDTO.setSerieFibonacci(series.toString());
+
+            emailService.sendMessage(
+                    email,
+                    "Prueba Técnica – JAIRO ANDRES SOTELO FLOREZ",
+                    " Serie: "+fibonacci.getFibonacci()  + " Fecha creación:  " + now.toString()
+            );
 
             statusDTO = new StatusDTO(Constants.SUCCESS_MESSAGE, Constants.SUCCESS_CODE);
         }catch (Exception e){
@@ -107,7 +121,9 @@ public class FibonacciServiceImpl implements FibonacciService {
 
             Integer minute = time.getMinute();
             String strMinute = minute.toString();
-
+            if(minute < 10){
+                strMinute = "0"+strMinute;
+            }
 
             Integer param1 = Integer.valueOf(strMinute.substring(0,1));
             Integer param2 = Integer.valueOf(strMinute.substring( 1));
@@ -127,6 +143,13 @@ public class FibonacciServiceImpl implements FibonacciService {
             Fibonacci fibonacci = fibonacciRepository.save(
                     Fibonacci.builder().fibonacci(series.toString()).build()
             );
+
+            emailService.sendMessage(
+                    email,
+                    "Prueba Técnica – JAIRO ANDRES SOTELO FLOREZ",
+                    " Serie: "+fibonacci.getFibonacci()  + " Fecha creación:  " + fibonacciRequestDTO.getDateValue()
+            );
+
 
             fibonacciDTO.setSerieFibonacci(series.toString());
             statusDTO = new StatusDTO(Constants.SUCCESS_MESSAGE, Constants.SUCCESS_CODE);
