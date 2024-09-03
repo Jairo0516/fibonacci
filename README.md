@@ -28,6 +28,49 @@ Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/
 mvn spring-boot:run
 ```
 
+## Url de pruebas
+
+Importar en postman:
+
+{
+	"info": {
+		"_postman_id": "f9951d6f-b6b4-4c09-9fc7-562bb40329c7",
+		"name": "Fibonacci",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "8884197",
+		"_collection_link": "https://martian-sunset-836717.postman.co/workspace/My-Workspace~d269e6e1-0335-45ce-8b37-32a35a69ec98/collection/8884197-f9951d6f-b6b4-4c09-9fc7-562bb40329c7?action=share&source=collection_link&creator=8884197"
+	},
+	"item": [
+		{
+			"name": "Generate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/fibonacci/generate"
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Filter",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dateValue\" : \"15:49:08\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/v1/fibonacci/generate/filter"
+			},
+			"response": []
+		}
+	]
+}
+
 ## Deploying the application to OpenShift
 
 The easiest way to deploy the sample application to OpenShift is to use the [OpenShift CLI](https://docs.openshift.org/latest/cli_reference/index.html):
