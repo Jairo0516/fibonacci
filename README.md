@@ -11,6 +11,10 @@ Solo hay que correr el proyecto, recomendaciones:
   -  Version de java requerida   <java.version>17</java.version>
 
 
+## URL Swagger
+http://localhost:8080/swagger-ui/index.html#/
+
+
 ## Requirements
 
 For building and running the application you need:
